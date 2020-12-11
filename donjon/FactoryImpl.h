@@ -16,7 +16,17 @@ namespace donjon
 	private:
 		void InitializeCells(const Option&, Dungeon&) const;
 		void RoundMask(const Option&, Dungeon&) const;
-		void EmplaceRooms(const Option&, Dungeon&) {}
-		void OpenRooms(const Option&, Dungeon&) {}
+		void EmplaceRooms(const Option&, Dungeon&) const;
+		void PackRooms(const Option&, Dungeon&) const;
+		void ScatterRooms(const Option&, Dungeon&) const;
+		// return: count of rooms
+		size_t EmplaceRoom(Dungeon&, size_t row, size_t col, size_t roomCount) const;
+		void AllocateRooms(const Option&) const;
+		void OpenRooms(const Option&, Dungeon&) const;
+		void LabelRooms(const Option&, Dungeon&) const;
+		void EmplaceCorridors(const Option&, Dungeon&) const;
+		void EmplaceStairs(const Option&, Dungeon&) const;
+		void ClearDungeon(const Option&, Dungeon&) const;
+
 	};
 }

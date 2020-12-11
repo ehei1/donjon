@@ -10,6 +10,7 @@ namespace donjon
 		Dungeon(size_t row, size_t column);
 
 		void Update(size_t row, size_t col, CellType);
+		CellType Get(size_t row, size_t col) const;
 
 	private:
 		size_t mRow{};

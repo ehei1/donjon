@@ -9,6 +9,12 @@ namespace donjon
 		Round,
 	};
 
+	enum class RoomLayout
+	{
+		Packed,
+		Scattered,
+	};
+
 	enum class CorridorLayout
 	{
 		Labyrinth,
@@ -53,7 +59,7 @@ namespace donjon
 		friend class FactoryImpl;
 
 	public:
-		Option(size_t seed, size_t row, size_t column, DungeonLayout dungeonLayout, size_t roomMin, size_t roomMax, CorridorLayout corridorLayout, size_t removeDeadends, size_t addStairs, MapStyle mapStyle, size_t cellSize) : mSeed{ seed }, mRow{ row }, mColumn{ column }, mDungeonLayout{ dungeonLayout }, mRoomMin{ roomMin }, mRoomMax{ roomMax }, mCorridorLayout{ corridorLayout }, mRemoveDeadends{ removeDeadends }, mAddStairs{ addStairs }, mMapStyle{ mapStyle }, mCellSize{ cellSize }
+		Option(size_t seed, size_t row, size_t column, DungeonLayout dungeonLayout, size_t roomMin, size_t roomMax, RoomLayout roomLayout, CorridorLayout corridorLayout, size_t removeDeadends, size_t addStairs, MapStyle mapStyle, size_t cellSize) : mSeed{ seed }, mRow{ row }, mColumn{ column }, mDungeonLayout{ dungeonLayout }, mRoomMin{ roomMin }, mRoomMax{ roomMax }, mRoomLayout{ roomLayout }, mCorridorLayout{ corridorLayout }, mRemoveDeadends{ removeDeadends }, mAddStairs{ addStairs }, mMapStyle{ mapStyle }, mCellSize{ cellSize }
 		{}
 
 	private:
@@ -63,6 +69,7 @@ namespace donjon
 		const DungeonLayout mDungeonLayout;
 		const size_t mRoomMin;
 		const size_t mRoomMax;
+		const RoomLayout mRoomLayout;
 		const CorridorLayout mCorridorLayout;
 		const size_t mRemoveDeadends;
 		const size_t mAddStairs;

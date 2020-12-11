@@ -9,6 +9,13 @@ namespace donjon
 		auto dungeon = new Dungeon(option.mRow, option.mColumn);
 
 		InitializeCells(option, *dungeon);
+		RoundMask(option, *dungeon);
+		EmplaceRooms(option, *dungeon);
+		OpenRooms(option, *dungeon);
+		LabelRooms(option, *dungeon);
+		EmplaceCorridors(option, *dungeon);
+		EmplaceStairs(option, *dungeon);
+		ClearDungeon(option, *dungeon);
 
 		return dungeon;
 	}
@@ -44,5 +51,86 @@ namespace donjon
 				}
 			}
 		}
+	}
+
+	void FactoryImpl::EmplaceRooms(const Option& option, Dungeon& dungeon) const
+	{
+		switch (option.mRoomLayout) {
+		case RoomLayout::Packed:
+			PackRooms(option, dungeon);
+			break;
+		case RoomLayout::Scattered:
+			ScatterRooms(option, dungeon);
+			break;
+		}
+	}
+
+	void FactoryImpl::PackRooms(const Option& option, Dungeon& dungeon) const
+	{
+		auto rowMax = option.mRow / 2;
+		auto colMax = option.mColumn / 2;
+		size_t roomCount = 0;
+
+		for (size_t row{}; row < rowMax; ++row) {
+			for (size_t col{}; col < colMax; ++col) {
+				if (CellType::Room == dungeon.Get(row, col)) {
+					continue;
+				}
+				else if ((!row || !col) && (std::rand() % 2)) {
+					continue;
+				}
+
+				roomCount = EmplaceRoom(dungeon, row, col, roomCount);
+			}
+		}
+	}
+
+	void FactoryImpl::ScatterRooms(const Option& option, Dungeon& dungeon) const
+	{
+
+	}
+
+	void FactoryImpl::ScatterRooms(const Option& option, Dungeon& dungeon) const
+	{
+
+	}
+
+	void FactoryImpl::AllocateRooms(const Option& option) const
+	{
+
+	}
+
+	size_t FactoryImpl::EmplaceRoom(Dungeon& dungeon, size_t row, size_t col, size_t roomCount) const
+	{
+		if (999 == roomCount) {
+			return 999;
+		}
+
+		return roomCount + 1;
+	}
+
+	void FactoryImpl::OpenRooms(const Option& option, Dungeon& dungeon) const
+	{
+
+	}
+
+	void FactoryImpl::LabelRooms(const Option& option, Dungeon& dungeon) const
+	{
+
+	}
+
+	void FactoryImpl::EmplaceCorridors(const Option& option, Dungeon& dungeon) const
+	{
+
+	}
+
+	void FactoryImpl::EmplaceStairs(const Option& option, Dungeon& dungeon) const
+	{
+
+	}
+
+	void FactoryImpl::ClearDungeon(const Option& option, Dungeon& dungeon) const
+	{
+
 	}
 }
